@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/texto1"
+        style="@style/textologin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/galada"
+        android:text="@string/intro"
+        android:textColor="@color/blue" />
+
+    <TextView
+        android:id="@+id/texto2"
+        style="@style/textologin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/texto1"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/galada"
+        android:text="@string/intro2"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/imagem1"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/texto2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/DP03"
+        android:layout_marginLeft="@dimen/DP03"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/logo2" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="@dimen/DP01"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagem1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_login"
+        android:text="@string/login"
+        android:onClick="button2"/>
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="@dimen/DP01"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_login"
+        android:text="@string/notas"
+        android:onClick="buttonnotas"/>
+
+</RelativeLayout>

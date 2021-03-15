@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">CitizenReport</string>
+
+    <string name="intro">Bem-Vindo à </string>
+    <string name="intro2">Cidade Inteligente!</string>
+
+
+    <string name="login2">Efetue o seu Login:</string>
+    <string name="registo_de_utilizador">Registo de Utilizador</string>
+    <string name="login">Login</string>
+    <string name="notas">Notas</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="registo"><u>Ainda não está registado?</u></string>
+    <string name="botao_registar">Registar</string>
+    <string name="Registar">Registar</string>
+    <string name="user">user</string>
+
+    <string name="username_2">Username :</string>
+    <string name="title_activity_notas_pessoais">NotasPessoais</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="button_save">Adicionar</string>
+    <string name="hint_word">Titulo</string>
+
+    <string name="hint_descricao">Descrição</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+
+</resources>

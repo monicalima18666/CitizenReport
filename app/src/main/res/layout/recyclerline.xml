@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Nota"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titulo"
+        android:layout_alignLeft="@id/titulo"
+        android:text="Descrição"
+        android:textSize="15dp"></TextView>
+
+
+
+    <ImageButton
+
+        android:id="@+id/delete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/DP10"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="@dimen/DP10"
+        android:src="@drawable/delete"
+        android:background="?selectableItemBackground"/>
+
+    <ImageButton
+
+        android:id="@+id/edit"
+        android:background="?selectableItemBackground"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/DP10"
+        android:layout_marginRight="92dp"
+        android:layout_marginBottom="@dimen/DP10"
+        android:src="@drawable/edit" />
+
+
+
+
+
+
+</RelativeLayout>
