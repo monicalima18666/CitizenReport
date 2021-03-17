@@ -19,10 +19,10 @@ class NotaAdapter(
     private var notas = emptyList<Nota>()
 
     class NotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tituloItemView: TextView = itemView.findViewById(R.id.titulo)
-        val descricaoItemView: TextView = itemView.findViewById(R.id.descricao)
-        val delete : ImageButton = itemView.findViewById(R.id.delete)
-        val edit : ImageButton = itemView.findViewById(R.id.edit)
+        val notaItemView: TextView = itemView.findViewById(R.id.textView)
+       // val descricaoItemView: TextView = itemView.findViewById(R.id.descricao)
+       // val delete : ImageButton = itemView.findViewById(R.id.delete)
+    //val edit : ImageButton = itemView.findViewById(R.id.edit)
 
     }
 
@@ -35,8 +35,8 @@ class NotaAdapter(
 
     override fun onBindViewHolder(holder: NotaViewHolder, position: Int) {
         val current = notas[position]
-        holder.tituloItemView.text = current.id.toString() + " - " + current.titulo
-        holder.descricaoItemView.text = current.descricao
+        holder.notaItemView.text = current.id.toString() + " - " + current.titulo+ "-" + current.descricao
+        //holder.descricaoItemView.text = current.descricao
         //chamar os botoes
 
     }
