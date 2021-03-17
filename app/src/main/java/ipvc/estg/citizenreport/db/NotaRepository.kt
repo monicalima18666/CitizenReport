@@ -11,8 +11,14 @@ class NotaRepository(private val notaDao: NotaDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
+
+
     suspend fun insert(nota: Nota) {
         notaDao.insert(nota)
+    }
+
+    suspend fun deleteAll(){
+        notaDao.deleteAll()
     }
 
 }

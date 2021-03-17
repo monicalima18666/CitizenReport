@@ -8,76 +8,70 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import ipvc.estg.citizenreport.dao.NotaDao
 import ipvc.estg.citizenreport.entities.Nota
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/*
 
-@Database(entities = [Nota::class], version = 1)
+@Database(entities = arrayOf(Nota::class), version = 1, exportSchema = false)
 
 abstract class NotaDB : RoomDatabase() {
 
-   /* abstract fun NotaDao(): NotaDao
+    abstract fun notaDao(): NotaDao
 
-    companion object {
-        @Volatile
-        private var INSTANCE: NotaDB? = null
+    private class WordDatabaseCallback(
+            private val scope: CoroutineScope
+    ) : RoomDatabase.Callback() {
 
-        fun getDatabase(
-                context: Context,
-                scope: CoroutineScope
-        ): NotaDB {
-            // if the INSTANCE is not null, then return it,
-            // if it is, then create the database
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        NotaDB::class.java,
-                        "nota_database"
-                )
-                        // Wipes and rebuilds instead of migrating if no Migration object.
-                        // Migration is not part of this codelab.
-                        .fallbackToDestructiveMigration()
-                        .addCallback(NotaDatabaseCallback(scope))
-                        .build()
-                INSTANCE = instance
-                // return instance
-                instance
-            }
-        }
+        override fun onOpen(db: SupportSQLiteDatabase) {
+            super.onOpen(db)
+            INSTANCE?.let { database ->
+                scope.launch {
+                    var notaDao = database.notaDao()
 
-        private class NotaDatabaseCallback(
-                private val scope: CoroutineScope
-        ) : RoomDatabase.Callback() {
-            *//**
-             * Override the onCreate method to populate the database.
-             *//*
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
-                // If you want to keep the data through app restarts,
-                // comment out the following line.
-                INSTANCE?.let { database ->
-                    scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.NotaDao())
-                    }
+                    // Delete all content here.
+                    notaDao.deleteAll()
+
+
+                    var nota = Nota(1, "Transito", "Rua 25 de abril")
+                    notaDao.insert(nota)
+                    nota = Nota(2, "Obras", "Perto de casa")
+                    notaDao.insert(nota)
+                    nota = Nota(3, "Tampa", "Desviada")
+                    notaDao.insert(nota)
+
                 }
             }
         }
+    }
 
-        *//**
-         * Populate the database in a new coroutine.
-         * If you want to start with more words, just add them.
-         *//*
-        suspend fun populateDatabase(notaDao: NotaDao) {
-            // Start the app with a clean database every time.
-            // Not needed if you only populate on creation.
-           notaDao.deleteAll()
 
-            var nota = Nota (1, "TRANSITO", "RUA 25 DE ABRIL")
-            notaDao.insert(nota)
-            nota = Nota(2, "Obras", "Perto de casa")
-            notaDao.insert(nota)
-            nota = Nota(3, "Tampa", "Desviada")
-            notaDao.insert(nota)
+    companion object {
+        // Singleton prevents multiple instances of database opening at the
+        // same time.
+        @Volatile
+        private var INSTANCE: NotaDB? = null
+
+        fun getDatabase(context: Context, scope: CoroutineScope): NotaDB {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        NotaDB::class.java,
+                        "cities_database"
+                )
+                        //estratégia de destruição
+                        .fallbackToDestructiveMigration()
+                        .addCallback(WordDatabaseCallback(scope))
+                        .build()
+
+                INSTANCE = instance
+                return instance
+            }
         }
-    }*/
-}
+    }
+
+
+}*/
