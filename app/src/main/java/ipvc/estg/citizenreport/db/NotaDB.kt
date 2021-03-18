@@ -10,9 +10,9 @@ import ipvc.estg.citizenreport.entities.Nota
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-/*
 
-@Database(entities = arrayOf(Nota::class), version = 1, exportSchema = false)
+
+@Database(entities = arrayOf(Nota::class), version = 6, exportSchema = false)
 
 abstract class NotaDB : RoomDatabase() {
 
@@ -30,7 +30,6 @@ abstract class NotaDB : RoomDatabase() {
 
                     // Delete all content here.
                     notaDao.deleteAll()
-
 
                     var nota = Nota(1, "Transito", "Rua 25 de abril")
                     notaDao.insert(nota)
@@ -74,4 +73,4 @@ abstract class NotaDB : RoomDatabase() {
     }
 
 
-}*/
+}

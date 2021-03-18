@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ipvc.estg.citizenreport.adapters.NotaAdapter
 import ipvc.estg.citizenreport.entities.Nota
+import ipvc.estg.citizenreport.viewModel.NotaViewModel
 import kotlinx.android.synthetic.main.activity_notas.*
 
 class Notas : AppCompatActivity() {
 
 
-   // private lateinit var notaViewModel: NotaViewModel
+    private lateinit var notaViewModel: NotaViewModel
     private val newNotaActivityRequestCode = 1
 
 
@@ -27,7 +28,7 @@ class Notas : AppCompatActivity() {
         setContentView(R.layout.activity_notas)
 
         // recycler view
-/*
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = NotaAdapter(this)
@@ -41,7 +42,7 @@ class Notas : AppCompatActivity() {
             notas?.let { adapter.setNotas(it) }
         })
 
-*/
+
 
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
@@ -51,15 +52,15 @@ class Notas : AppCompatActivity() {
         }
 
 
-        recyclerview.addItemDecoration(
+       /* recyclerview.addItemDecoration(
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
-
+*/
 
     }
 
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newNotaActivityRequestCode && resultCode == Activity.RESULT_OK) {
@@ -78,5 +79,5 @@ class Notas : AppCompatActivity() {
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG).show()
         }
-    }*/
+    }
 }

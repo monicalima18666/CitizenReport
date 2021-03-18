@@ -1,15 +1,13 @@
 package ipvc.estg.citizenreport.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import ipvc.estg.citizenreport.entities.Nota
 
+@Dao
 interface NotaDao {
 
-    @Query("SELECT * FROM nota_table ORDER BY titulo ASC")
+    @Query("SELECT * FROM nota_table")
     fun getAllNotas(): LiveData<List<Nota>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

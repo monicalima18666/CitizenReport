@@ -2,13 +2,14 @@ package ipvc.estg.citizenreport.viewModel
 
 import android.app.Application
 import androidx.lifecycle.*
+import ipvc.estg.citizenreport.db.NotaDB
 //import ipvc.estg.citizenreport.db.NotaDB
 import ipvc.estg.citizenreport.db.NotaRepository
 import ipvc.estg.citizenreport.entities.Nota
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/*
+
 class NotaViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: NotaRepository
@@ -31,4 +32,4 @@ class NotaViewModel(application: Application) : AndroidViewModel(application) {
         repository.deleteAll()
     }
 
-}*/
+}

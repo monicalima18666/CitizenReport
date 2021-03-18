@@ -2,11 +2,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-  <!--  <TextView
+    <TextView
         android:id="@+id/titulo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Nota"
@@ -16,7 +17,7 @@
 
     <TextView
         android:id="@+id/descricao"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titulo"
         android:layout_alignLeft="@id/titulo"
@@ -49,14 +50,14 @@
         android:layout_marginBottom="@dimen/DP10"
         android:src="@drawable/edit" />
 
--->
 
-    <TextView
+
+   <!-- <TextView
         android:id="@+id/textView"
         style="@style/word_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
+        android:background="@android:color/holo_orange_light" />-->
 
 
 </RelativeLayout>
