@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 
 
-@Database(entities = arrayOf(Nota::class), version = 6, exportSchema = false)
+@Database(entities = arrayOf(Nota::class), version = 1, exportSchema = false)
 
 abstract class NotaDB : RoomDatabase() {
 

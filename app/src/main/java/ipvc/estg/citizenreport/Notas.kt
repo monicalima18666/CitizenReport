@@ -52,10 +52,10 @@ class Notas : AppCompatActivity() {
         }
 
 
-       /* recyclerview.addItemDecoration(
+        recyclerview.addItemDecoration(
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
-*/
+
 
     }
 
