@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <EditText
         android:id="@+id/edit_titulo"
         android:layout_width="match_parent"
@@ -20,23 +21,27 @@
     <EditText
         android:id="@+id/edit_descricao"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:textStyle="bold"
+        android:layout_height="400dp"
+        android:layout_below="@id/edit_titulo"
+        android:layout_margin="@dimen/big_padding"
+        android:background="@drawable/border_rounded"
         android:fontFamily="sans-serif-light"
         android:hint="@string/hint_descricao"
         android:inputType="textMultiLine"
-        android:layout_margin="@dimen/big_padding"
         android:textSize="18sp"
-        android:background="@drawable/border_rounded" />
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:gravity="start" />
 
     <Button
+        android:layout_below="@id/edit_descricao"
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:text="@string/button_save"
         android:layout_margin="@dimen/big_padding"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:background="@drawable/button_login"/>
 
 
-</LinearLayout>
+</RelativeLayout>
