@@ -56,6 +56,8 @@ class Notas : AppCompatActivity(), NotaAdapter.EnviarInformacao {
 
 
     }
+
+    // FUNÇÃO QUE FAZ O DELETE
     override fun sendID(id: Int?) {
         notaViewModel.deleteByID(id)
     }

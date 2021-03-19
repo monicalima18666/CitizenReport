@@ -72,7 +72,8 @@ class NotaAdapter(context: Context, private val intID:EnviarInformacao
 
         holder.delete.setOnClickListener{
             val titulo = holder.tituloItemView.text.toString()
-            intID.sendID(id)
+         // ENVIA O ID
+           intID.sendID(id)
         }
 
     }
