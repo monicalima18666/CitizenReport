@@ -1,10 +1,12 @@
 package ipvc.estg.citizenreport.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 @Entity(tableName = "nota_table")
 
 class Nota (
@@ -12,5 +14,4 @@ class Nota (
         @ColumnInfo(name = "titulo") val titulo: String,
         @ColumnInfo(name = "descricao") val descricao: String,
 
-
-        )
+        ): Parcelable

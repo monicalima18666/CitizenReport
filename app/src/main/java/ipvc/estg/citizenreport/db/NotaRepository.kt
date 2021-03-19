@@ -21,4 +21,8 @@ class NotaRepository(private val notaDao: NotaDao) {
         notaDao.deleteAll()
     }
 
+    /*suspend fun deleteNotaById(id: Int?){
+        notaDao.deleteNotaById(id)
+    }*/
+
 }

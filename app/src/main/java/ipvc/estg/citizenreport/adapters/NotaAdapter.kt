@@ -1,6 +1,7 @@
 package ipvc.estg.citizenreport.adapters
 
 import android.content.Context
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ipvc.estg.citizenreport.R
 import ipvc.estg.citizenreport.dao.NotaDao
 import ipvc.estg.citizenreport.entities.Nota
+import kotlinx.android.synthetic.main.recyclerline.view.*
 
 class NotaAdapter(
         context: Context
@@ -23,8 +25,8 @@ class NotaAdapter(
     class NotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tituloItemView: TextView = itemView.findViewById(R.id.titulo)
         val descricaoItemView: TextView = itemView.findViewById(R.id.descricao)
-         val delete : ImageButton = itemView.findViewById(R.id.delete)
-    //val edit : ImageButton = itemView.findViewById(R.id.edit)
+        val delete : ImageButton = itemView.findViewById(R.id.delete)
+        val edit : ImageButton = itemView.findViewById(R.id.edit)
 
     }
 
@@ -43,6 +45,10 @@ class NotaAdapter(
         holder.delete.setOnClickListener{
             deleteNota(position)
         }
+
+        holder.itemView.rowLayout.setOnClickListener{
+
+        }
     }
 
     internal fun setNotas (notas: List<Nota>) {
@@ -50,11 +56,16 @@ class NotaAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount() = notas.size
-}
+    override fun getItemCount():Int {
 
+     return notas.size
+   }
 
     private fun deleteNota(position: Int) {
 
 
+    }
+
 }
+
+
