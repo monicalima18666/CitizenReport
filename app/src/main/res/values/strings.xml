@@ -25,9 +25,12 @@
     <string name="previous">Previous</string>
 
     <string name="button_save">Adicionar</string>
+    <string name="button_update">Atualizar</string>
     <string name="hint_word">Titulo</string>
 
     <string name="hint_descricao">Descrição</string>
     <string name="empty_not_saved">Nota não inserida, campos vazios.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

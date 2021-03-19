@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ipvc.estg.citizenreport.adapters.NotaAdapter
+import ipvc.estg.citizenreport.add.NovaNota
 import ipvc.estg.citizenreport.entities.Nota
 import ipvc.estg.citizenreport.viewModel.NotaViewModel
 import kotlinx.android.synthetic.main.activity_notas.*
 
-class Notas : AppCompatActivity() {
+class Notas : AppCompatActivity(), NotaAdapter.EnviarInformacao {
 
 
     private lateinit var notaViewModel: NotaViewModel
@@ -29,9 +30,8 @@ class Notas : AppCompatActivity() {
 
         // recycler view
 
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = NotaAdapter(this)
+        val adapter = NotaAdapter(this , this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -41,8 +41,6 @@ class Notas : AppCompatActivity() {
             // Update the cached copy of the words in the adapter.
             notas?.let { adapter.setNotas(it) }
         })
-
-
 
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
@@ -58,6 +56,9 @@ class Notas : AppCompatActivity() {
 
 
     }
+    override fun sendID(id: Int?) {
+        notaViewModel.deleteByID(id)
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -71,6 +72,8 @@ class Notas : AppCompatActivity() {
             if (ptitulo!= null && pdescricao != null) {
                 val nota = Nota(titulo = ptitulo, descricao = pdescricao)
                 notaViewModel.insert(nota)
+
+                Toast.makeText(applicationContext,"Inseriu com sucesso",Toast.LENGTH_LONG).show()
             }
 
         } else {
@@ -80,4 +83,6 @@ class Notas : AppCompatActivity() {
                     Toast.LENGTH_LONG).show()
         }
     }
+
+
 }
