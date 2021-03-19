@@ -18,7 +18,7 @@ abstract class NotaDB : RoomDatabase() {
 
     abstract fun notaDao(): NotaDao
 
-    private class WordDatabaseCallback(
+    private class NotaDatabaseCallback(
             private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
 
@@ -29,7 +29,7 @@ abstract class NotaDB : RoomDatabase() {
                     var notaDao = database.notaDao()
 
                     // Delete all content here.
-                    notaDao.deleteAll()
+                  // notaDao.deleteAll()
 
                     var nota = Nota(1, "Transito", "Rua 25 de abril")
                     notaDao.insert(nota)
@@ -59,11 +59,11 @@ abstract class NotaDB : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                         context.applicationContext,
                         NotaDB::class.java,
-                        "cities_database"
+                        "notas_database"
                 )
                         //estratégia de destruição
-                        .fallbackToDestructiveMigration()
-                        .addCallback(WordDatabaseCallback(scope))
+                       // .fallbackToDestructiveMigration()
+                        .addCallback(NotaDatabaseCallback(scope))
                         .build()
 
                 INSTANCE = instance
