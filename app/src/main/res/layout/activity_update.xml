@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".update.UpdateActivity">
+    tools:context=".update.UpdateNota">
 
     <EditText
         android:id="@+id/update_titulo"
@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_update"
+        android:onClick="editarNota"
         android:layout_margin="@dimen/big_padding"
         android:textColor="@color/white"
         android:background="@drawable/button_login"/>
