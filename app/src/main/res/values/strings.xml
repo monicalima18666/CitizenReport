@@ -25,6 +25,7 @@
     <string name="previous">Previous</string>
 
     <string name="button_save">Adicionar</string>
+    <string name="button_update">Atualizar</string>
     <string name="hint_word">Titulo</string>
 
     <string name="hint_descricao">Descrição</string>

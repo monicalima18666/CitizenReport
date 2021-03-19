@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".update.UpdateActivity">
+
+    <EditText
+        android:id="@+id/update_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/min_height"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="bold"
+        android:hint="@string/hint_word"
+        android:inputType="textAutoComplete"
+        android:layout_margin="@dimen/big_padding"
+        android:textSize="18sp"
+        android:background="@drawable/border_rounded"/>
+
+    <EditText
+        android:id="@+id/update_descricao"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/update_titulo"
+        android:layout_margin="@dimen/big_padding"
+        android:background="@drawable/border_rounded"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_descricao"
+        android:inputType="textMultiLine"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:gravity="start" />
+
+    <Button
+        android:layout_below="@id/update_descricao"
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_update"
+        android:layout_margin="@dimen/big_padding"
+        android:textColor="@color/white"
+        android:background="@drawable/button_login"/>
+
+
+
+</RelativeLayout>

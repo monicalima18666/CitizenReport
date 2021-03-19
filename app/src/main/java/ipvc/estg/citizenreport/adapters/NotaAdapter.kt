@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ipvc.estg.citizenreport.R
+import ipvc.estg.citizenreport.dao.NotaDao
 import ipvc.estg.citizenreport.entities.Nota
 
 class NotaAdapter(
@@ -18,10 +19,11 @@ class NotaAdapter(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var notas = emptyList<Nota>()
 
+
     class NotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tituloItemView: TextView = itemView.findViewById(R.id.titulo)
         val descricaoItemView: TextView = itemView.findViewById(R.id.descricao)
-       // val delete : ImageButton = itemView.findViewById(R.id.delete)
+         val delete : ImageButton = itemView.findViewById(R.id.delete)
     //val edit : ImageButton = itemView.findViewById(R.id.edit)
 
     }
@@ -38,7 +40,9 @@ class NotaAdapter(
         holder.tituloItemView.text = current.id.toString() + " - " + current.titulo
         holder.descricaoItemView.text = current.descricao
         //chamar os botoes
-
+        holder.delete.setOnClickListener{
+            deleteNota(position)
+        }
     }
 
     internal fun setNotas (notas: List<Nota>) {
@@ -47,4 +51,10 @@ class NotaAdapter(
     }
 
     override fun getItemCount() = notas.size
+}
+
+
+    private fun deleteNota(position: Int) {
+
+
 }

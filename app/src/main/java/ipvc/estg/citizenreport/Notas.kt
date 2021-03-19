@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ipvc.estg.citizenreport.adapters.NotaAdapter
+import ipvc.estg.citizenreport.add.NovaNota
 import ipvc.estg.citizenreport.entities.Nota
 import ipvc.estg.citizenreport.viewModel.NotaViewModel
 import kotlinx.android.synthetic.main.activity_notas.*
@@ -41,8 +42,6 @@ class Notas : AppCompatActivity() {
             // Update the cached copy of the words in the adapter.
             notas?.let { adapter.setNotas(it) }
         })
-
-
 
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
