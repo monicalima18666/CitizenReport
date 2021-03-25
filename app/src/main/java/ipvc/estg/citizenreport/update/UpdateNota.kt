@@ -48,16 +48,29 @@ class UpdateNota : AppCompatActivity() {
         var item = intent.getIntExtra(Build.ID, 0)
         val replyIntent = Intent()
         if (TextUtils.isEmpty(update_titulo.text) || TextUtils.isEmpty(update_descricao.text))  {
-            setResult(Activity.RESULT_CANCELED, replyIntent)
-            Toast.makeText(applicationContext,"Não atualizada , campos vazios", Toast.LENGTH_LONG).show()
+            if (TextUtils.isEmpty((update_titulo.text)) && !TextUtils.isEmpty((update_descricao.text))) {
+                update_titulo.error = getString(R.string.tituloMsg)
+            }
+
+            if (!TextUtils.isEmpty((update_titulo.text)) && TextUtils.isEmpty((update_descricao.text))) {
+                update_descricao.error = getString(R.string.DescMsg)
+            }
+
+            if (TextUtils.isEmpty((update_titulo.text)) && TextUtils.isEmpty((update_descricao.text))) {
+                update_titulo.error = getString(R.string.tituloMsg)
+                update_descricao.error = getString(R.string.DescMsg)
+            }
+
+
         } else {
             val nota = Nota(id = item, titulo = update_titulo.text.toString(), descricao = update_descricao.text.toString())
             notaViewModel.editNota(nota)
 
             Toast.makeText(applicationContext,"Atualizada com sucesso",Toast.LENGTH_LONG).show()
 
+            finish()
+
         }
-        finish()
 
     }
 
