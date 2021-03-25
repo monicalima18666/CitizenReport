@@ -20,18 +20,38 @@ class NovaNota : AppCompatActivity() {
         tituloText = findViewById(R.id.edit_titulo)
         descricaoText = findViewById(R.id.edit_descricao)
 
-        val button = findViewById<Button>(R.id.button_save)
-        button.setOnClickListener {
-            val replyIntent = Intent()
-            if (TextUtils.isEmpty(tituloText.text)) {
-                setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
-                replyIntent.putExtra(EXTRA_REPLY_TITULO, tituloText.text.toString())
-                replyIntent.putExtra(EXTRA_REPLY_DESCRICAO, descricaoText.text.toString())
-                setResult(Activity.RESULT_OK, replyIntent)
+
+        if (intent.getStringExtra(EXTRA_REPLY_TITULO).isNullOrEmpty() && intent.getStringExtra(EXTRA_REPLY_DESCRICAO).isNullOrEmpty()) {
+
+            val button = findViewById<Button>(R.id.button_save)
+            button.setOnClickListener {
+
+                if (TextUtils.isEmpty((tituloText.text)) || TextUtils.isEmpty((descricaoText.text))) {
+
+                    if (TextUtils.isEmpty(tituloText.text) && !TextUtils.isEmpty(descricaoText.text)) {
+                        tituloText.error = getString(R.string.tituloMsg)
+                    }
+
+                    if (!TextUtils.isEmpty(descricaoText.text) && TextUtils.isEmpty(descricaoText.text)) {
+                        descricaoText.error = getString(R.string.DescMsg)
+                    }
+
+                    if (TextUtils.isEmpty(tituloText.text) && TextUtils.isEmpty(descricaoText.text)) {
+                        tituloText.error = getString(R.string.tituloMsg)
+                        descricaoText.error = getString(R.string.DescMsg)
+                    }
+                } else {
+                    val replyIntent = Intent()
+
+                    replyIntent.putExtra(EXTRA_REPLY_TITULO, tituloText.text.toString())
+                    replyIntent.putExtra(EXTRA_REPLY_DESCRICAO, descricaoText.text.toString())
+                    setResult(Activity.RESULT_OK, replyIntent)
+
+                    finish()
+                }
             }
-            finish()
         }
+
     }
 
     companion object {
