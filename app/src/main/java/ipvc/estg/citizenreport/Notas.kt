@@ -73,6 +73,8 @@ class Notas : AppCompatActivity(), NotaAdapter.EnviarInformacao {
 
             if (ptitulo!= null && pdescricao != null) {
                 val nota = Nota(titulo = ptitulo, descricao = pdescricao)
+
+                // FUNÇÃO QUE FAZ O INSERT
                 notaViewModel.insert(nota)
 
                 Toast.makeText(applicationContext,"Inseriu com sucesso",Toast.LENGTH_LONG).show()

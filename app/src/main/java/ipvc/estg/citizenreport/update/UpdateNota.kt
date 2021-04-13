@@ -64,6 +64,8 @@ class UpdateNota : AppCompatActivity() {
 
         } else {
             val nota = Nota(id = item, titulo = update_titulo.text.toString(), descricao = update_descricao.text.toString())
+
+            // FUNÇÃO QUE FAZ O UPDATE
             notaViewModel.editNota(nota)
 
             Toast.makeText(applicationContext,"Atualizada com sucesso",Toast.LENGTH_LONG).show()
