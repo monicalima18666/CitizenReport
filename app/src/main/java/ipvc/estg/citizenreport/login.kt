@@ -11,5 +11,8 @@ class login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
 
-
+    fun map(view: View) {
+        var intent = Intent(this, map::class.java)
+        startActivity(intent)
+    }
 }
