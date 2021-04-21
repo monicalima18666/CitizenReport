@@ -11,8 +11,5 @@ class login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
 
-    fun textView_05(view: View) {
-        val intent = Intent(this, Registo::class.java)
-        startActivity(intent)
-    }
+
 }

@@ -96,7 +96,7 @@
 
 
 
-    <TextView
+   <!-- <TextView
         style="@style/textoNormal"
         android:id="@+id/textView_05"
         android:layout_width="wrap_content"
@@ -109,6 +109,6 @@
         android:textColor="@color/colorPrimaryDark"
         android:clickable="true"
         android:onClick="textView_05"/>
-
+-->
 
 </RelativeLayout>
