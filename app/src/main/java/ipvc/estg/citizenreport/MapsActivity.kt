@@ -1,7 +1,13 @@
 package ipvc.estg.citizenreport
 
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -36,8 +42,38 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val zone = LatLng(41.6946, -8.83016)
+        val zoomLevel = 15f
+
+        /* mMap.moveCamera(CameraUpdateFactory.newLatLng(zone))*/
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zone, zoomLevel))
+
+    }
+
+
+    fun logout(view: View) {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.Logout)
+        builder.setMessage(R.string.LogoutMessage)
+        builder.setIcon(R.drawable.ic_exit_to_app_black_24dp)
+        builder.setPositiveButton(R.string.Yes) { dialog: DialogInterface?, which: Int ->
+            //Fab
+            val sharedPref: SharedPreferences = getSharedPreferences(
+                getString(R.string.preference_login), Context.MODE_PRIVATE
+            )
+            with(sharedPref.edit()){
+                putBoolean(getString(R.string.LoginShared), false)
+                putString(getString(R.string.EmailShared), "")
+                commit()
+            }
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        builder.setNegativeButton(R.string.No) { dialog: DialogInterface?, which: Int ->}
+        builder.show()
+
+
     }
 }

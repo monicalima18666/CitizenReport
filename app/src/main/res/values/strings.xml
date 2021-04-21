@@ -36,4 +36,17 @@
     <string name="DescMsg">Preencha a descrição</string>
     <string name="title_activity_maps">Map</string>
 
+
+
+
+    <string name="Logout">Logout</string>
+    <string name="LogoutMessage">Are you sure you want to logout?</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="Back">" Need to log out"</string>
+    <string name="preference_login" translatable="false">LoginSharePreferences</string>
+    <string name="LoginShared" translatable="false">loginshared</string>
+    <string name="EmailShared" translatable="false">emailshared</string>
+    <string name="addNote">Add Note</string>
+
 </resources>
