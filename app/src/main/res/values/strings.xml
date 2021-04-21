@@ -34,5 +34,6 @@
 
     <string name="tituloMsg">Preencha o título</string>
     <string name="DescMsg">Preencha a descrição</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

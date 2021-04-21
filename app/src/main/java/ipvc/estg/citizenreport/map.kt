@@ -1,5 +1,6 @@
 package ipvc.estg.citizenreport
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,5 +41,11 @@ class map : AppCompatActivity() {
                 Toast.makeText(this@map, "${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    fun map1(view: View) {
+        var intent = Intent(this, MapsActivity::class.java)
+        startActivity(intent)
+
     }
 }
