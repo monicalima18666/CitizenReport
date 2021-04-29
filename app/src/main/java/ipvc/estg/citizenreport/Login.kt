@@ -94,10 +94,6 @@ class Login : AppCompatActivity() {
 
     }
 
-    fun map(view: View) {
-        val intent = Intent(this, map::class.java)
-        startActivity(intent)
-    }
 }
 
 

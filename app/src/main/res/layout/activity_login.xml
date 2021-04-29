@@ -96,17 +96,6 @@
         android:onClick="login"/>
 
 
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="@dimen/DP01"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:text="@string/login"
-        android:background="@drawable/button_login"
-        android:onClick="map"/>
-
 
 
    <!-- <TextView
