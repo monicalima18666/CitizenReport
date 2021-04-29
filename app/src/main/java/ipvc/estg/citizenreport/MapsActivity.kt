@@ -64,7 +64,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             )
             with(sharedPref.edit()){
                 putBoolean(getString(R.string.LoginShared), false)
-                putString(getString(R.string.EmailShared), "")
+                putString(getString(R.string.UsernameShared), "")
                 commit()
             }
             var intent = Intent(this, MainActivity::class.java)

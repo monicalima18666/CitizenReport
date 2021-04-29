@@ -46,7 +46,14 @@
     <string name="Back">" Need to log out"</string>
     <string name="preference_login" translatable="false">LoginSharePreferences</string>
     <string name="LoginShared" translatable="false">loginshared</string>
-    <string name="EmailShared" translatable="false">emailshared</string>
+    <string name="UsernameShared" translatable="false">usernameshared</string>
+    <string name="Id_Login" translatable="false">idlogin</string>
     <string name="addNote">Add Note</string>
+
+    <string name="SP">Preferences</string>
+    <string name="Userlogged">userlogged</string>
+    <string name="Error">Field cannot be empty</string>
+    <string name="Error_login">Invalid data</string>
+
 
 </resources>

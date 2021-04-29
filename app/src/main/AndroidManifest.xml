@@ -38,7 +38,7 @@
         <activity android:name=".add.NovaNota" />
         <activity android:name=".Notas" />
         <activity android:name=".Registo" />
-        <activity android:name=".login" />
+        <activity android:name=".Login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

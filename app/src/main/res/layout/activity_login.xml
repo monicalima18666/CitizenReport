@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".Login">
 
     <TextView
         android:layout_marginTop="10dp"
@@ -89,6 +89,18 @@
         android:layout_width="@dimen/DP01"
         android:layout_height="wrap_content"
         android:layout_below="@+id/insertPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/login"
+        android:background="@drawable/button_login"
+        android:onClick="login"/>
+
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="@dimen/DP01"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/login"
