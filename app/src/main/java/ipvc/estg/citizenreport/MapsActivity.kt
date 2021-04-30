@@ -53,7 +53,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         var position: LatLng
 
 
-        //Apresentação do marcador conforme o user que está logado
+        //ALTERAÇÃO DA COR DO MARKER DO USER QUE ESTA LOGADO
+
+
         call.enqueue(object : Callback<List<Reports>>{
             override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
                 if (response.isSuccessful){
