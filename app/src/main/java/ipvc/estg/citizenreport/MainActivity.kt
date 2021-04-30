@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
                 var intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
 
+
             }
         }
     }

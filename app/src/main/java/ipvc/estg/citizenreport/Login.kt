@@ -39,7 +39,7 @@ class Login : AppCompatActivity() {
 
         val erro = getString(R.string.Error)
 
-        // validações
+        // Validações
 
         if(user.text.isNullOrEmpty() || pass.text.isNullOrEmpty()){
 
@@ -61,7 +61,9 @@ class Login : AppCompatActivity() {
                     if (response.isSuccessful){
                         val c: OutputPost = response.body()!!
                         Log.d("STATUS", c.status.toString())
-                        //Confirmação login
+
+
+                        //Confirmação login (atraves de status = true)
                         if(c.status){
                             startActivity(intent)
                             finish()
@@ -76,9 +78,9 @@ class Login : AppCompatActivity() {
                                 putInt(getString(R.string.Id_Login),c.id)
 
                                 commit()
-                                //Log.d("****SHARED","${c.id}" )
-                            }
 
+                            }
+                          //status = false
                         }else{
 
                             Toast.makeText(this@Login, R.string.Error_login, Toast.LENGTH_SHORT).show()
