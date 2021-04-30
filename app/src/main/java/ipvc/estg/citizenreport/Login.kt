@@ -24,9 +24,6 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-
-
-
     }
 
     fun login(view: View) {
@@ -36,6 +33,7 @@ class Login : AppCompatActivity() {
 
         Log.d("USERNAME", user.text.toString())
         Log.d("Password", pass.text.toString())
+
         val request = ServiceBuilder.buildService(EndPoints::class.java)
         val call = request.login(user.text.toString(),pass.text.toString())
 
@@ -66,6 +64,7 @@ class Login : AppCompatActivity() {
                         //Confirmação login
                         if(c.status){
                             startActivity(intent)
+                            finish()
 
                             //Shared Preferences Login
                             val sharedPref: SharedPreferences = getSharedPreferences(
@@ -74,6 +73,7 @@ class Login : AppCompatActivity() {
                             with(sharedPref.edit()){
                                 putBoolean(getString(R.string.LoginShared), true)
                                 putString(getString(R.string.UsernameShared), "${c.username}")
+                                putInt(getString(R.string.Id_Login),c.id)
 
                                 commit()
                                 //Log.d("****SHARED","${c.id}" )

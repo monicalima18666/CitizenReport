@@ -4,21 +4,35 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import ipvc.estg.citizenreport.api.EndPoints
+import ipvc.estg.citizenreport.api.OutputPost
+import ipvc.estg.citizenreport.api.Reports
+import ipvc.estg.citizenreport.api.ServiceBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
+    private lateinit var reports: List<Reports>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +41,53 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
+        val sharedPref: SharedPreferences = getSharedPreferences(
+                getString(R.string.preference_login), Context.MODE_PRIVATE
+        )
+
+
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getReports()
+        var position: LatLng
+
+
+        //Apresentação do marcador conforme o user que está logado
+        call.enqueue(object : Callback<List<Reports>>{
+            override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                if (response.isSuccessful){
+                    reports = response.body()!!
+                    for(report in reports){
+                        position = LatLng(report.latitude,report.longitude)
+                        if (report.users_id.equals(sharedPref.all[getString(R.string.Id_Login)])){
+
+                            mMap.addMarker(MarkerOptions()
+                                    .position(position)
+                                    .title(report.titulo)
+                                    .snippet(report.descricao)
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+
+                            )
+                        }else {
+                            mMap.addMarker(
+                                    MarkerOptions()
+                                            .position(position)
+                                            .title(report.titulo)
+                                            .snippet(report.descricao)
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                            )
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+
+
     }
 
     /**
@@ -75,5 +136,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         builder.show()
 
 
+    }
+
+    override fun onMarkerClick(p0: Marker?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onBackPressed() {
+        //nothing
+        Toast.makeText(this@MapsActivity, R.string.Back, Toast.LENGTH_SHORT).show()
     }
 }

@@ -55,5 +55,8 @@
     <string name="Error">Field cannot be empty</string>
     <string name="Error_login">Invalid data</string>
 
+    <string name="id" translatable="false">id</string>
+
+
 
 </resources>
