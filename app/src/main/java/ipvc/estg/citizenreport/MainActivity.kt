@@ -20,8 +20,7 @@ class MainActivity : AppCompatActivity() {
             if(sharedPref.all[getString(R.string.LoginShared)]==true){
                 var intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
-
-
+                finish()
             }
         }
     }

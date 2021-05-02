@@ -78,7 +78,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                                             .position(position)
                                             .title(report.titulo)
                                             .snippet(report.descricao)
-                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                             )
                         }
                     }
@@ -106,11 +106,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val zone = LatLng(41.6946, -8.83016)
+        val area = LatLng(41.6946, -8.83016)
         val zoomLevel = 15f
 
         /* mMap.moveCamera(CameraUpdateFactory.newLatLng(zone))*/
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zone, zoomLevel))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(area, zoomLevel))
 
     }
 
@@ -119,9 +119,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.Logout)
-        builder.setMessage(R.string.LogoutMessage)
-        builder.setIcon(R.drawable.ic_exit_to_app_black_24dp)
-        builder.setPositiveButton(R.string.Yes) { dialog: DialogInterface?, which: Int ->
+       // builder.setMessage(R.string.LogoutMessage)
+
+        //builder.setIcon(R.drawable.ic_exit_to_app_black_24dp)
+       // builder.setPositiveButton(R.string.Yes) { dialog: DialogInterface?, which: Int ->
             //Fab
             val sharedPref: SharedPreferences = getSharedPreferences(
                 getString(R.string.preference_login), Context.MODE_PRIVATE
@@ -137,13 +138,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         }
 
-        builder.setNegativeButton(R.string.No) { dialog: DialogInterface?, which: Int ->}
-        builder.show()
+       // builder.setNegativeButton(R.string.No) { dialog: DialogInterface?, which: Int ->}
+       // builder.show()
 
 
-
-
-    }
+    //}
 
     override fun onMarkerClick(p0: Marker?): Boolean {
         TODO("Not yet implemented")
