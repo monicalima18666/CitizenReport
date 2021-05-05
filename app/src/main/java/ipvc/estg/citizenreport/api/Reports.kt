@@ -7,6 +7,7 @@ data class Reports (
         val descricao: String,
         val imagem: String,
         val titulo: String,
-        val users_id: Int
+        val users_id: Int,
+        val id_tipo: Int
 
         )

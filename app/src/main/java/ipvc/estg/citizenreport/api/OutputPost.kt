@@ -6,3 +6,5 @@ data class OutputPost(
         val username: String,
         val id: Int,
 )
+
+// usado para o login
