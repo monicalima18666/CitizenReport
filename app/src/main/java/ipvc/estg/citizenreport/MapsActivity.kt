@@ -152,4 +152,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         //nothing
         Toast.makeText(this@MapsActivity, R.string.Back, Toast.LENGTH_SHORT).show()
     }
+
+    // teste git
 }
