@@ -22,7 +22,7 @@ class map : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
-// mapa4
+// mapa5
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewmap)
         val request = ServiceBuilder.buildService(EndPoints::class.java)
         val call = request.getUsers()
