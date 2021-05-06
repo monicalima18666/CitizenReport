@@ -51,4 +51,6 @@
     <string name="Insert">"Need to insert "</string>
     <string name="caima_baixo">Top/Down</string>
     <string name="esquerda_direita">Left/Right</string>
+    <string name="insert_username">Insert Username</string>
+    <string name="insert_password">Insert Password</string>
 </resources>
