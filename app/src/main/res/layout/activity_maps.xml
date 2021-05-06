@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -25,14 +25,13 @@
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="24dp"
             android:contentDescription="@string/addReport"
             android:src="@drawable/ic_add_black_24dp"
             app:backgroundTint="#2b78e4"
             app:tint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
             android:onClick="butaoCriarReport"/>
 
 
@@ -40,12 +39,14 @@
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:src="@drawable/ic_exit_to_app_black_24dp"
             app:backgroundTint="#2b78e4"
             app:tint="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/fab1"
-            app:layout_constraintEnd_toEndOf="@id/fab1"
+            android:layout_above="@id/fab1"
+            android:layout_marginBottom="100dp"
+            android:layout_marginRight="30dp"
             android:onClick="logout"/>
 
 
@@ -58,6 +59,7 @@
             android:orientation="vertical"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:layout_alignParentRight="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -112,6 +114,21 @@
 
         </RadioGroup>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="115dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:backgroundTint="@color/blueClaro"
+        android:paddingTop="10dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/radioGroup_filter"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/border"
+        android:gravity="center" />
+
+</RelativeLayout>
 
 

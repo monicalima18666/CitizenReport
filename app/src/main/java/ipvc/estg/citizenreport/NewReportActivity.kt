@@ -32,6 +32,7 @@ import java.io.ByteArrayOutputStream
 import java.util.Base64;
 import java.util.Base64.getEncoder
 
+
 private const val REQUEST_CODE = 42
 private val IMAGE_PICK_CODE=1000;
 private val PERMISSION_CODE=1001;
@@ -45,32 +46,29 @@ private lateinit var locationRequest: LocationRequest
 
 private const val LOCATION_PERMISSION_REQUEST_CODE = 1
 
-class NewReportActivity : AppCompatActivity() {
 
+class NewReportActivity : AppCompatActivity() {
     private var latitude:Double = 0.0
     private var longitude:Double = 0.0
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var reports: List<Reports>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_report)
 
 
-
         val sharedPref: SharedPreferences = getSharedPreferences(
-            getString(R.string.preference_login), Context.MODE_PRIVATE
-        )
+                getString(R.string.preference_login), Context.MODE_PRIVATE
+                            )
         val users_id = sharedPref.getInt("id_login", 0)
+
 
         // initialize fusedLocationClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         checkPermissions()
 
         createLocationRequest()
-
 
         photo_btn.setOnClickListener{
             val tirarPhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -99,7 +97,6 @@ class NewReportActivity : AppCompatActivity() {
             }
         }
 
-
         add_marker.setOnClickListener{
 
             val tipoProblema = findViewById<RadioGroup>(R.id.radioGroup_insert).checkedRadioButtonId
@@ -111,25 +108,25 @@ class NewReportActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.preenchacampos) , Toast.LENGTH_LONG).show()
 
             }else{
-                var id_tipo:Int =0
+                var tipo_id:Int =0
                 val request = ServiceBuilder.buildService(EndPoints::class.java)
 
-                //texto do radiobuttom
+                //texto do radiobutton
 
                 val tipo = findViewById<RadioGroup>(R.id.radioGroup_insert)
                 var tt =  findViewById<RadioButton>(tipoProblema)
                 var radioButtonTexto =  findViewById<RadioButton>(tipoProblema).getText().toString();
 
                 if(findViewById<RadioButton>(R.id.radioButton).isChecked){
-                    id_tipo=1
+                    tipo_id=1
                 }else if(findViewById<RadioButton>(R.id.radioButton2).isChecked){
-                    id_tipo=2
+                    tipo_id=2
                 }else{
-                    id_tipo=3
+                    tipo_id=3
                 }
 
 
-                Log.d("***", "tipoproblema: $id_tipo")
+                Log.d("***", "tipoproblema: $tipo_id")
 
 //
                 val image = findViewById<ImageView>(R.id.imagem)
@@ -137,20 +134,20 @@ class NewReportActivity : AppCompatActivity() {
                 val byteArrayOutputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
                 val encodedImage = getEncoder().encodeToString(byteArrayOutputStream.toByteArray())
-                Log.d("***", "imagem: $encodedImage")
 
-                //val call = request.adicionarReport( latitude , longitude ,  descricao.text.toString()  ,encodedImage, users_id , titulo.text.toString(),  id_tipo)
-                val call = request.adicionarReport( 12.3 , 12.3 ,  "ahaah"  , "1", 1 , "titulo",  1)
+
+                val call = request.adicionarReport( latitude , longitude ,  descricao.text.toString()  ,encodedImage, users_id , titulo.text.toString(),  tipo_id)
+
                 Log.d("***", "lat: $latitude")
                 Log.d("***", "log: $longitude")
-                Log.d("***", "idtipo: $id_tipo")
+                Log.d("***", "imagem: $encodedImage")
+                Log.d("***", "idtipo: $tipo_id")
                 Log.d("***", "descricao: ${descricao.text.toString()}")
                 Log.d("***", "id: $users_id")
                 Log.d("***", "titulo: ${titulo.text.toString()}")
 
                 call.enqueue(object : Callback<OutputReports> {
                     override fun onResponse(call: Call<OutputReports>, response: Response<OutputReports>) {
-                        Log.d("***", response.body().toString())
                         if (response.isSuccessful) {
                             Log.d("***", "funcionou insert")
                             val intent = Intent(applicationContext, MapsActivity::class.java)
@@ -161,14 +158,13 @@ class NewReportActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<OutputReports>, t: Throwable) {
                         //Toast.makeText(applicationContext, "${t.message}", Toast.LENGTH_SHORT).show()
-                        Log.d("***", "ErrorOccur:  ${t.message}" )
+                        Log.d("***", "ErrorOccur:  ${t.message}, ${call}"  )
 
                     }
                 })
             }
         }
     }
-
 
     private fun createLocationRequest() {
         locationRequest = LocationRequest()
@@ -187,20 +183,20 @@ class NewReportActivity : AppCompatActivity() {
         }
     }
 
-
     private fun getLocations() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
         }
         fusedLocationClient.lastLocation?.addOnSuccessListener {
 
-                location : Location? ->
+            location : Location? ->
             if (location != null) {
                 latitude = location.latitude
                 longitude = location.longitude
             }
         }
     }
+
 
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -220,7 +216,6 @@ class NewReportActivity : AppCompatActivity() {
             }
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 

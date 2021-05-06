@@ -28,14 +28,14 @@ interface EndPoints {
 
 
     @FormUrlEncoded
-    @POST("/myslim//api/inserir_report")
-    fun adicionarReport(@Field("latitude") latitude: Double,
-                       @Field("longitude") longitude: Double,
-                        @Field("descricao") descricao: String,
-                        @Field("imagem") imagem: String,
-                        @Field("users_id") users_id: Int,
-                        @Field("titulo") titulo: String,
-                        @Field("id_tipo") id_tipo: Int
+    @POST("/myslim/api/inserir_report")
+    fun adicionarReport(@Field("latitude") latitude: Double?,
+                       @Field("longitude") longitude: Double?,
+                        @Field("descricao") descricao: String?,
+                        @Field("imagem") imagem: String?,
+                        @Field("users_id") users_id: Int?,
+                        @Field("titulo") titulo: String?,
+                        @Field("tipo_id") tipo_id: Int?
                        ): Call<OutputReports>
 
     @POST("/myslim/api/deletereport/{id}")
@@ -44,7 +44,7 @@ interface EndPoints {
     @FormUrlEncoded
     @POST("/myslim/api/updatereport/{id}")
     fun updateReport(@Path("id") id: Int?,
-                    @Field("id_tipo") id_tipo: Int?,
+                    @Field("tipo_id") tipo_id: Int?,
                     @Field("descricao") descricao: String?,
                     @Field("imagem") imagem: String?
     ): Call<OutputEliminar>

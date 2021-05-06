@@ -18,7 +18,7 @@ data class OutputReports(
         val imagem: String,
         val users_id: Int,
         val titulo: String,
-        val id_tipo: Int
+        val tipo_id: Int
 )
 
 data class OutputEliminar(

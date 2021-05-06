@@ -72,4 +72,17 @@
     <string name="erro">Erro</string>
     <string name="titulo">Título</string>
     <string name="tudo">Tudo</string>
+    <string name="nenhuma">Nenhuma</string>
+    <string name="metros">metros</string>
+    <string name="distancia">Distância</string>
+
+    <string name="erroUsername">Username inválido</string>
+    <string name="erroPassword">Password Inválida</string>
+    <string name="adcionadoSucesso">Adicionada com sucesso!</string>
+    <string-array name="array">
+        <item>Acidente</item>
+        <item>Obras</item>
+        <item>Problema</item>
+    </string-array>
+
 </resources>
