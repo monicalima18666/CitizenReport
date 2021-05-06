@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -135,6 +137,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val sharedPref: SharedPreferences = getSharedPreferences(
             getString(R.string.preference_login), Context.MODE_PRIVATE
         )
+        val users_id = sharedPref.getInt("id_login", 0)
 
 
         val request = ServiceBuilder.buildService(EndPoints::class.java)
@@ -154,7 +157,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     reports = response.body()!!
                     for(report in reports){
                         position = LatLng(report.latitude,report.longitude)
-                        if (report.users_id.equals(sharedPref.all[getString(R.string.Id_Login)])){
+                        if (report.users_id == users_id){
 
                             mMap.addMarker(MarkerOptions()
                                 .position(position)
@@ -180,7 +183,154 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
+        val tipo = findViewById<RadioGroup>(R.id.radioGroup_filter)
+        tipo.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                val radio: RadioButton = findViewById(checkedId)
+                Log.d("****", "$radio")
 
+                if(radio.text.equals(getString(R.string.acidente))){
+                    mMap.clear()
+                    val callTipo = request.getReportByTipo(1)
+
+                    callTipo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+                               reports = response.body()!!
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }else if(radio.text.equals(getString(R.string.problema))){
+                    mMap.clear()
+                    val callTipo = request.getReportByTipo(2)
+
+                    callTipo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+
+                                reports = response.body()!!
+
+                                Log.d("***", "pontos Acidente: $reports")
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }else if(radio.text.equals(getString(R.string.obras))){
+                    mMap.clear()
+                    val callTipo = request.getReportByTipo(3)
+
+                    callTipo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+
+                                reports = response.body()!!
+
+                                Log.d("***", "pontos Acidente: $reports")
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }else{
+                    val callTudo = request.getReports()
+                    mMap.clear()
+                    callTudo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+
+                                reports = response.body()!!
+
+                                Log.d("***", "pontos Acidente: $reports")
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }
+            })
     }
 
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,9 +9,6 @@
 
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:padding="24dp"
         tools:context=".NewReportActivity">
 
@@ -18,6 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+
     <TextView
         android:id="@+id/tituloReport"
         style="@style/textologin"
@@ -28,15 +29,43 @@
         android:text="@string/criar_report"
         android:textColor="@color/colorPrimary" />
 
+        <TextView
+            android:id="@+id/textViewtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/titulo"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/galada"
+            android:layout_below="@+id/tituloReport" />
+
+        <EditText
+            android:id="@+id/insertTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textViewtitulo"
+            android:background="@color/colorPrimary"
+            android:hint="Insira um título"
+            android:inputType="textMultiLine"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="14sp"
+            android:textAlignment="center"
+
+            android:layout_gravity="center_horizontal" />
+
     <TextView
         android:id="@+id/textViewtipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/tipo_de_problema"
-        android:layout_below="@id/tituloReport"
-        android:textColor="@color/blue"
-        android:textSize="15sp"
+        android:layout_below="@id/insertTitulo"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         android:fontFamily="@font/galada"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup_insert"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,14 +76,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewtipo"
-        android:layout_margin="15dp"
-        android:background="@drawable/input_multiline"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingBottom="10dp">
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -100,8 +125,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/descricao"
-        android:textColor="@color/blue"
-        android:textSize="21sp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/galada"
         android:layout_below="@+id/radioGroup_insert"
         app:layout_constraintBottom_toTopOf="@+id/descricao_insertMarker"
         app:layout_constraintStart_toStartOf="parent" />
@@ -111,16 +137,17 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/textViewdescricao"
-        android:layout_margin="15dp"
-        android:background="@drawable/input_multiline"
-        android:gravity="start|top"
+        android:background="@color/colorPrimary"
         android:hint="Insira uma descrição"
         android:inputType="textMultiLine"
-        android:padding="25dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup_insert" />
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_insert"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/textView7"
@@ -129,19 +156,21 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="@string/foto"
-        android:textColor="@color/blue"
-        android:textSize="21sp" />
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/galada" />
 
-    <ImageView
-        android:id="@+id/imagem"
-        android:layout_below="@+id/textView7"
-        android:layout_width="250dp"
-        android:layout_height="140dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/input_multiline"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_baseline_insert_photo_24"
-        tools:ignore="VectorDrawableCompat" />
+        <ImageView
+            android:id="@+id/imagem"
+            android:layout_width="250dp"
+            android:layout_height="140dp"
+            android:layout_below="@+id/textView7"
+           android:layout_margin="10dp"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_baseline_insert_photo_24"
+            tools:ignore="VectorDrawableCompat" />
 
    <LinearLayout
        android:id="@+id/layout1"
@@ -149,6 +178,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
+       android:layout_centerHorizontal="true"
        android:layout_marginTop="10dp"
         android:layout_below="@+id/imagem">
 
@@ -192,11 +222,10 @@
         android:text="@string/inserir_marker"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/layout1"/>
 
 
-        // teste
 
 
 

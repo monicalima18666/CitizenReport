@@ -67,6 +67,9 @@
     <string name="acidente">Acidente</string>
     <string name="obras">Obras</string>
     <string name="problema">Problema</string>
-
-
+    <string name="naopermitiu">Nao permitiu</string>
+    <string name="preenchacampos">Preencha todos os campos</string>
+    <string name="erro">Erro</string>
+    <string name="titulo">Título</string>
+    <string name="tudo">Tudo</string>
 </resources>
