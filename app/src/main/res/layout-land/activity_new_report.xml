@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none" >
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp"
+        tools:context=".NewReportActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+    <TextView
+        android:id="@+id/tituloReport"
+        style="@style/textologin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/galada"
+        android:text="@string/criar_report"
+        android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/textViewtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/titulo"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/galada"
+            android:layout_below="@+id/tituloReport" />
+
+        <EditText
+            android:id="@+id/insertTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textViewtitulo"
+            android:background="@color/colorPrimary"
+            android:hint="Insira um título"
+            android:inputType="textMultiLine"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="14sp"
+            android:textAlignment="center"
+
+            android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/textViewtipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/tipo_de_problema"
+        android:layout_below="@id/insertTitulo"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/galada"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup_insert"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup_insert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewtipo"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.3"
+            android:buttonTint="@color/white"
+            android:text="@string/acidente"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="265dp"
+            tools:layout_editor_absoluteY="468dp" />
+
+        <RadioButton
+
+            android:id="@+id/radioButton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.33"
+            android:buttonTint="@color/white"
+            android:text="@string/obras"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="265dp"
+            tools:layout_editor_absoluteY="468dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:buttonTint="@color/white"
+            android:text="@string/problema"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="265dp"
+            tools:layout_editor_absoluteY="468dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewdescricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/descricao"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/galada"
+        android:layout_below="@+id/radioGroup_insert"
+        app:layout_constraintBottom_toTopOf="@+id/descricao_insertMarker"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/descricao_insertMarker"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/textViewdescricao"
+        android:background="@color/colorPrimary"
+        android:hint="Insira uma descrição"
+        android:inputType="textMultiLine"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_insert"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_below="@+id/descricao_insertMarker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/foto"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/galada" />
+
+        <ImageView
+            android:id="@+id/imagem"
+            android:layout_width="250dp"
+            android:layout_height="140dp"
+            android:layout_below="@+id/textView7"
+           android:layout_margin="10dp"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_baseline_insert_photo_24"
+            tools:ignore="VectorDrawableCompat" />
+
+   <LinearLayout
+       android:id="@+id/layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="10dp"
+        android:layout_below="@+id/imagem">
+
+        <Button
+            android:id="@+id/galeria_btn"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:text="@string/galeria"
+            android:drawableRight="@drawable/ic_baseline_photo_album_24"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descricao_update" />
+
+
+        <Button
+            android:id="@+id/photo_btn"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:text="@string/tirar"
+            android:textAllCaps="false"
+            android:drawableRight="@drawable/ic_baseline_add_a_photo_24"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descricao_update" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_marker"
+        android:layout_width="@dimen/DP01"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_login"
+        android:text="@string/inserir_marker"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/layout1"/>
+
+
+
+
+
+    </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

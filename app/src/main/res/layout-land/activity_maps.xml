@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapsActivity" />
+
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/addReport"
+            android:src="@drawable/ic_add_black_24dp"
+            app:backgroundTint="#2b78e4"
+            app:tint="@android:color/white"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            android:onClick="butaoCriarReport"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_exit_to_app_black_24dp"
+            app:backgroundTint="#2b78e4"
+            app:tint="@android:color/white"
+            android:layout_above="@id/fab1"
+            android:layout_marginBottom="100dp"
+            android:layout_marginRight="30dp"
+            android:onClick="logout"/>
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_alignParentLeft="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:buttonTint="@color/white"
+                android:checked="true"
+                android:paddingRight="10dp"
+                android:text="@string/tudo"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="265dp"
+                tools:layout_editor_absoluteY="468dp" />
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:buttonTint="@color/white"
+                android:paddingRight="10dp"
+                android:text="@string/acidente"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="265dp"
+                tools:layout_editor_absoluteY="468dp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:buttonTint="@color/white"
+                android:paddingRight="10dp"
+                android:text="@string/problema"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="265dp"
+                tools:layout_editor_absoluteY="468dp" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:buttonTint="@color/white"
+                android:paddingRight="10dp"
+                android:text="@string/obras"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="265dp"
+                tools:layout_editor_absoluteY="468dp" />
+
+        </RadioGroup>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="115dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:backgroundTint="@color/blueClaro"
+        android:paddingTop="10dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/radioGroup_filter"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/border"
+        android:gravity="center" />
+
+</RelativeLayout>
+
+

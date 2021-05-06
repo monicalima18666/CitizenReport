@@ -87,4 +87,6 @@
     <string name="Error_login">Dados inválidos</string>
     <string name="caima_baixo">Cima/Baixo</string>
     <string name="esquerda_direita">Esquerda/Direita</string>
+    <string name="insert_username">Inserir Username</string>
+    <string name="insert_password">Inserir Password</string>
 </resources>
