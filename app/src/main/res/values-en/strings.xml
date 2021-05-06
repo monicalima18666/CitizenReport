@@ -49,4 +49,6 @@
     <string name="erroUsername">" Invalid username"</string>
     <string name="adcionadoSucesso">Added successfully!</string>
     <string name="Insert">"Need to insert "</string>
+    <string name="caima_baixo">Top/Down</string>
+    <string name="esquerda_direita">Left/Right</string>
 </resources>

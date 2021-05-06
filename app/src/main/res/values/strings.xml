@@ -85,4 +85,6 @@
     </string-array>
     <string name="Insert">Necessita de inserir</string>
     <string name="Error_login">Dados inválidos</string>
+    <string name="caima_baixo">Cima/Baixo</string>
+    <string name="esquerda_direita">Esquerda/Direita</string>
 </resources>
