@@ -160,6 +160,7 @@ class NewReportActivity : AppCompatActivity() {
                         //Toast.makeText(applicationContext, "${t.message}", Toast.LENGTH_SHORT).show()
                         Log.d("***", "ErrorOccur:  ${t.message}, ${call}"  )
 
+
                     }
                 })
             }
@@ -230,5 +231,11 @@ class NewReportActivity : AppCompatActivity() {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    override fun onBackPressed() {
+        //nothing
+        Toast.makeText(this@NewReportActivity, R.string.Insert, Toast.LENGTH_SHORT).show()
+    }
+
 
 }
