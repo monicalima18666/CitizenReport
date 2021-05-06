@@ -20,8 +20,8 @@
     <ImageView
         android:layout_marginTop="10dp"
         android:id="@+id/imagem1"
-        android:layout_width="170dp"
-        android:layout_height="150dp"
+        android:layout_width="140dp"
+        android:layout_height="130dp"
         android:layout_below="@id/texto1"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/DP03"
@@ -114,5 +114,27 @@
 
 
 -->
-//primeiro commit
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayoutSensor"
+        android:layout_below="@+id/btn">
+
+        <TextView
+            android:id="@+id/txtAcelerometro"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:background="@color/blueClaro"
+            android:gravity="center"
+            android:text="Hello World"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>
