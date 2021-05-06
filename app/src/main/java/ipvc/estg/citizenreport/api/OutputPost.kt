@@ -8,3 +8,25 @@ data class OutputPost(
 )
 
 // usado para o login
+
+
+data class OutputReports(
+        val id: Int,
+        val latitude: Double,
+        val longitude: Double,
+        val descricao: String,
+        val imagem: String,
+        val users_id: Int,
+        val titulo: String,
+        val tipo_id: Int
+)
+
+data class OutputEliminar(
+        val mensagem: String
+)
+
+data class OutputInsert(
+        val status: Boolean,
+        val MSG: String,
+
+)

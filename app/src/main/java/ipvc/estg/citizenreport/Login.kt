@@ -75,7 +75,7 @@ class Login : AppCompatActivity() {
                             with(sharedPref.edit()){
                                 putBoolean(getString(R.string.LoginShared), true)
                                 putString(getString(R.string.UsernameShared), "${c.username}")
-                                putInt(getString(R.string.Id_Login),c.id)
+                                putInt("id_login", c.id)
 
                                 commit()
 

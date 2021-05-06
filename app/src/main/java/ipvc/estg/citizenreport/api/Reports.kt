@@ -6,8 +6,6 @@ data class Reports (
         val longitude: Double,
         val descricao: String,
         val imagem: String,
-        val titulo: String,
         val users_id: Int,
-        val id_tipo: Int
-
-        )
+        val titulo: String,
+        val tipo_id: Int )

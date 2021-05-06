@@ -7,22 +7,22 @@
 
     <string name="login2">Efetue o seu Login:</string>
     <string name="registo_de_utilizador">Registo de Utilizador</string>
-    <string name="login">Login</string>
+    <string name="login" translatable="false">Login</string>
     <string name="notas">Notas</string>
-    <string name="username">Username:</string>
-    <string name="password">Password:</string>
-    <string name="registo"><u>Ainda não está registado?</u></string>
+    <string name="username" translatable="false">Username:</string>
+    <string name="password" translatable="false">Password:</string>
+    <string name="registo"><u> Ainda não está registado?</u></string>
     <string name="botao_registar">Registar</string>
     <string name="Registar">Registar</string>
-    <string name="user">user</string>
+    <string name="user" translatable="false">user</string>
 
-    <string name="username_2">Username :</string>
+    <string name="username_2" translatable="false">Username :</string>
     <string name="title_activity_notas_pessoais">NotasPessoais</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next">Seguinte</string>
+    <string name="previous">Anterior</string>
 
     <string name="button_save">Adicionar</string>
     <string name="button_update">Atualizar</string>
@@ -34,27 +34,26 @@
 
     <string name="tituloMsg">Preencha o título</string>
     <string name="DescMsg">Preencha a descrição</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
 
 
-    <string name="Logout">Logout</string>
-    <string name="LogoutMessage">Are you sure you want to logout?</string>
-    <string name="Yes">Yes</string>
-    <string name="No">No</string>
-    <string name="Back">" Need to log out"</string>
+    <string name="Logout" translatable="false">Logout</string>
+    <string name="LogoutMessage">Tem certeza que deseja sair?</string>
+    <string name="Yes">Sim</string>
+    <string name="No">Não</string>
+    <string name="Back">" Precisa de fazer Log out"</string>
     <string name="preference_login" translatable="false">LoginSharePreferences</string>
     <string name="LoginShared" translatable="false">loginshared</string>
     <string name="UsernameShared" translatable="false">usernameshared</string>
     <string name="Id_Login" translatable="false">idlogin</string>
-    <string name="addNote">Add Note</string>
+    <string name="addNote">Adiciona Nota</string>
 
-    <string name="SP">Preferences</string>
-    <string name="Userlogged">userlogged</string>
-    <string name="Error">Field cannot be empty</string>
-    <string name="Error_login">Invalid data</string>
+    <string name="SP" translatable="false">Preferences</string>
+    <string name="Userlogged" translatable="false">userlogged</string>
+    <string name="Error">"O campo não pode estar vazio "</string>
 
     <string name="id" translatable="false">id</string>
-    <string name="addReport">Add Report</string>
+    <string name="addReport">Adiciona Report</string>
 
 
     <string name="criar_report">Criar Report</string>
@@ -63,10 +62,27 @@
     <string name="foto">Foto</string>
     <string name="galeria">Galeria</string>
     <string name="tirar">Tirar</string>
-    <string name="inserir_marker">Inserir marker</string>
+    <string name="inserir_marker">Inserir report</string>
     <string name="acidente">Acidente</string>
     <string name="obras">Obras</string>
     <string name="problema">Problema</string>
+    <string name="naopermitiu">Nao permitiu</string>
+    <string name="preenchacampos">Preencha todos os campos</string>
+    <string name="erro">Erro</string>
+    <string name="titulo">Título</string>
+    <string name="tudo">Tudo</string>
+    <string name="nenhuma">Nenhuma</string>
+    <string name="metros">metros</string>
+    <string name="distancia">Distância</string>
 
-
+    <string name="erroUsername">Username inválido</string>
+    <string name="erroPassword">Password Inválida</string>
+    <string name="adcionadoSucesso">Adicionada com sucesso!</string>
+    <string-array name="array">
+        <item>Acidente</item>
+        <item>Obras</item>
+        <item>Problema</item>
+    </string-array>
+    <string name="Insert">Necessita de inserir</string>
+    <string name="Error_login">Dados inválidos</string>
 </resources>

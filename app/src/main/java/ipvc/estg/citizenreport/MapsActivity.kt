@@ -1,5 +1,6 @@
 package ipvc.estg.citizenreport
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,18 +11,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.*
 import com.google.android.gms.maps.model.MarkerOptions
 import ipvc.estg.citizenreport.api.EndPoints
 import ipvc.estg.citizenreport.api.OutputPost
@@ -30,6 +34,7 @@ import ipvc.estg.citizenreport.api.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.roundToInt
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -41,7 +46,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private lateinit var minhaLocalizacao:LatLng
+    private var results = FloatArray(1)
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
@@ -64,10 +71,56 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
         createLocationRequest()
+
+
+
+        //FILTROS POR DISTÂNCIA
+        val relativeLayout2 = findViewById<RelativeLayout>(R.id.relativeLayout2)
+        val distancia1000 = RadioButton(this)
+        distancia1000.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        distancia1000.setText("1000m")
+        distancia1000.id = 0
+
+        val distancia2000 = RadioButton(this)
+        distancia2000.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        distancia2000.setText("2000m")
+        distancia2000.id = 1
+
+        val distancia3000 = RadioButton(this)
+        distancia3000.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        distancia3000.setText("3000m")
+        distancia3000.id = 2
+
+        val nenhuma = RadioButton(this)
+        nenhuma.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        nenhuma.setText(getString(R.string.nenhuma))
+        nenhuma.id = 3
+
+        val radioGroup2 = RadioGroup(this)
+        val params2 = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        params2.setMargins(20, 0, 0, 0)
+        radioGroup2.layoutParams = params2
+
+        radioGroup2.addView(distancia1000)
+        radioGroup2.addView(distancia2000)
+        radioGroup2.addView(distancia3000)
+        radioGroup2.addView(nenhuma)
+        relativeLayout2.addView(radioGroup2)
+
+        radioGroup2.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                0 -> getFiltroDistancia1000()
+                1 -> getFiltroDistancia2000()
+                2 -> getFiltroDistancia3000()
+                3 -> onMapReady(mMap)
+            }
+        }
+
     }
 
+
+
   fun butaoCriarReport(view: View) {
-        //Log.d("***", "locccc: ${minhaLocalizacao.longitude}")
         val intent = Intent(this, NewReportActivity::class.java)
         startActivity(intent)
         finish()
@@ -93,12 +146,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-    fun calculateDistance(lat1: Double, lng1: Double, lat2: Double, lng2: Double): Float {
-        val results = FloatArray(1)
-        Location.distanceBetween(lat1, lng1, lat2, lng2, results)
-        // distance in meter
-        return results[0]
-    }
 
     override fun onPause() {
         super.onPause()
@@ -135,6 +182,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val sharedPref: SharedPreferences = getSharedPreferences(
             getString(R.string.preference_login), Context.MODE_PRIVATE
         )
+        val users_id = sharedPref.getInt("id_login", 0)
 
 
         val request = ServiceBuilder.buildService(EndPoints::class.java)
@@ -154,7 +202,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     reports = response.body()!!
                     for(report in reports){
                         position = LatLng(report.latitude,report.longitude)
-                        if (report.users_id.equals(sharedPref.all[getString(R.string.Id_Login)])){
+                        if (report.users_id == users_id){
 
                             mMap.addMarker(MarkerOptions()
                                 .position(position)
@@ -181,6 +229,155 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
 
 
+        // MENU DOS TIPOS
+        val tipo = findViewById<RadioGroup>(R.id.radioGroup_filter)
+        tipo.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                val radio: RadioButton = findViewById(checkedId)
+                Log.d("****", "$radio")
+
+                if(radio.text.equals(getString(R.string.acidente))){
+                    mMap.clear()
+                    val callTipo = request.getReportByTipo(1)
+
+                    callTipo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+                               reports = response.body()!!
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }else if(radio.text.equals(getString(R.string.problema))){
+                    mMap.clear()
+                    val callTipo = request.getReportByTipo(2)
+
+                    callTipo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+
+                                reports = response.body()!!
+
+                                Log.d("***", "pontos Acidente: $reports")
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }else if(radio.text.equals(getString(R.string.obras))){
+                    mMap.clear()
+                    val callTipo = request.getReportByTipo(3)
+
+                    callTipo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+
+                                reports = response.body()!!
+
+                                Log.d("***", "pontos Acidente: $reports")
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }else{
+                    val callTudo = request.getReports()
+                    mMap.clear()
+                    callTudo.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+
+                                reports = response.body()!!
+
+                                Log.d("***", "pontos Acidente: $reports")
+
+                                for(report in reports){
+                                    if(report.users_id == users_id) {
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports = mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString())
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+                                    }else{
+                                        position = LatLng(report.latitude,report.longitude)
+                                        val reports =   mMap.addMarker(MarkerOptions()
+                                            .position(position)
+                                            .title(report.id.toString())
+                                            .snippet(report.users_id.toString()));
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Log.d("***", "hhh")
+                        }
+                    })
+
+                }
+            })
     }
 
 
@@ -242,6 +439,149 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onBackPressed() {
         //nothing
         Toast.makeText(this@MapsActivity, R.string.Back, Toast.LENGTH_SHORT).show()
+    }
+
+
+    //Cálculo da distância
+    fun calcularDistancia(latitude: Double, longitude: Double, latitude2: Double, longitude2: Double): Float {
+        Location.distanceBetween(latitude, longitude, latitude2, longitude2, results)
+        return results[0]
+    }
+
+    //Distância até 1000m
+    fun getFiltroDistancia1000() {
+        if (ActivityCompat.checkSelfPermission(this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            return
+        } else {
+            fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+                if (location != null) {
+                    lastLocation = location
+                    mMap.clear()
+
+                    val request = ServiceBuilder.buildService(EndPoints::class.java)
+                    val call = request.getReports()
+                    var position: LatLng
+
+                    call.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+                            if (response.isSuccessful) {
+                                val reports = response.body()!!
+                                for (report in reports) {
+                                    position = LatLng(report.latitude, report.longitude)
+
+                                    if (calcularDistancia(location.latitude, location.longitude, report.latitude, report.longitude) <= 1000) {
+                                        mMap.addMarker(MarkerOptions()
+                                                .position(position)
+                                                .title(report.titulo)
+                                                .snippet(getString(R.string.distancia)+ ": " + results[0].roundToInt() + getString(R.string.metros))
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)))
+
+
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Toast.makeText(this@MapsActivity, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                }
+            }
+        }
+    }
+
+    //Distância até 2000m
+    fun getFiltroDistancia2000() {
+        if (ActivityCompat.checkSelfPermission(this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            return
+        } else {
+            fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+                if (location != null) {
+                    lastLocation = location
+                    mMap.clear()
+
+                    val request = ServiceBuilder.buildService(EndPoints::class.java)
+                    val call = request.getReports()
+                    var position: LatLng
+
+                    call.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+
+                            if (response.isSuccessful) {
+                                val reports = response.body()!!
+                                for (report in reports) {
+                                    position = LatLng(report.latitude, report.longitude)
+
+                                    if (calcularDistancia(location.latitude, location.longitude, report.latitude, report.longitude) <= 2000) {
+                                        mMap.addMarker(MarkerOptions()
+                                                .position(position)
+                                                .title(report.titulo)
+                                                .snippet(getString(R.string.distancia)+ ": " + results[0].roundToInt() + getString(R.string.metros))
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)))
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Toast.makeText(this@MapsActivity, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                }
+            }
+        }
+    }
+
+    //Distância até 3000m
+    fun getFiltroDistancia3000() {
+        if (ActivityCompat.checkSelfPermission(this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            return
+        } else {
+            fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+                if (location != null) {
+                    lastLocation = location
+                    mMap.clear()
+
+                    val request = ServiceBuilder.buildService(EndPoints::class.java)
+                    val call = request.getReports()
+                    var position: LatLng
+
+                    call.enqueue(object : Callback<List<Reports>> {
+                        override fun onResponse(call: Call<List<Reports>>, response: Response<List<Reports>>) {
+
+                            if (response.isSuccessful) {
+                                val reports = response.body()!!
+                                for (report in reports) {
+                                    position = LatLng(report.latitude, report.longitude)
+
+                                    if (calcularDistancia(location.latitude, location.longitude, report.latitude, report.longitude) <= 3000) {
+                                        mMap.addMarker(MarkerOptions()
+                                                .position(position)
+                                                .title(report.titulo)
+                                                .snippet(getString(R.string.distancia)+ ": " + results[0].roundToInt() + getString(R.string.metros))
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)))
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Reports>>, t: Throwable) {
+                            Toast.makeText(this@MapsActivity, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                }
+            }
+        }
     }
 
 
