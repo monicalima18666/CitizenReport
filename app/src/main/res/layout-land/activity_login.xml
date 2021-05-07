@@ -7,7 +7,9 @@
     tools:context=".Login">
 
     <TextView
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
         android:id="@+id/texto1"
         style="@style/textologin"
         android:layout_width="wrap_content"
@@ -19,48 +21,48 @@
 
     <ImageView
         android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
         android:id="@+id/imagem1"
         android:layout_width="140dp"
         android:layout_height="130dp"
         android:layout_below="@id/texto1"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="@dimen/DP03"
-        android:layout_marginLeft="@dimen/DP03"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/login" />
 
-    <TextView
-        style="@style/textoNormal"
-        android:id="@+id/texto2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/imagem1"
-        android:text="@string/login2"/>
-
-    <TextView
+    <!--<TextView
         android:id="@+id/textView_02"
         style="@style/textoNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/texto2"
-        android:layout_marginStart="@dimen/DP03"
-        android:layout_marginLeft="@dimen/DP03"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft=""
         android:text="@string/username"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/SP03" />
+        android:textSize="@dimen/SP03" />-->
+
+    <TextView
+        android:id="@+id/texto2"
+        style="@style/textoNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="193dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/imagem1"
+        android:text="@string/login2" />
 
     <EditText
         android:id="@+id/insertUser"
-        android:layout_width="match_parent"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_02"
-        android:layout_marginStart="@dimen/DP03"
-        android:layout_marginLeft="@dimen/DP03"
-        android:layout_marginEnd="@dimen/DP03"
-        android:layout_marginRight="@dimen/DP03" />
+        android:layout_below="@id/texto2"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/insert_username"/>
 
-    <TextView
+    <!--<TextView
         style="@style/textoNormal"
         android:id="@+id/textView_03"
         android:layout_width="wrap_content"
@@ -70,19 +72,19 @@
         android:layout_marginLeft="@dimen/DP03"
         android:text="@string/password"
         android:textSize="@dimen/SP03"
-        android:textColor="@color/colorBlack" />
+        android:textColor="@color/colorBlack" />-->
 
     <EditText
 
         android:id="@+id/insertPassword"
-        android:layout_width="match_parent"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_03"
-        android:layout_marginStart="@dimen/DP03"
-        android:layout_marginLeft="@dimen/DP03"
-        android:layout_marginEnd="@dimen/DP03"
-        android:layout_marginRight="@dimen/DP03"
-        android:inputType="textPassword" />
+        android:layout_below="@id/insertUser"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="10dp"
+        android:inputType="textPassword"
+        android:hint="@string/insert_password"
+        android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/btn"
@@ -116,24 +118,25 @@
 -->
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <RelativeLayout
         android:id="@+id/relativeLayoutSensor"
-        android:layout_below="@+id/btn">
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/insertPassword"
+        android:layout_marginLeft="500dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp">
 
         <TextView
             android:id="@+id/txtAcelerometro"
             android:layout_width="150dp"
             android:layout_height="70dp"
+            android:layout_centerInParent="true"
             android:background="@color/blueClaro"
             android:gravity="center"
             android:text="Hello World"
-            android:layout_centerInParent="true"
             android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
